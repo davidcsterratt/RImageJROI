@@ -11,6 +11,3 @@ Depends:
     png
 License: GPL-3
 LazyData: true
-Collate:
-    'RImageJROI-package.r'
-    'roiread.R'
