@@ -1,5 +1,5 @@
 ##    readroi.R - Read ImageJ files in to R
-##    Copyright (C) 2011 David C. Sterratt <david.c.sterratt@ed.ac.uk>
+##    Copyright (C) 2011, 2014 David C. Sterratt <david.c.sterratt@ed.ac.uk>
 
 ##    This program is free software: you can redistribute it and/or modify
 ##    it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@
 ##' @export
 ##' @seealso \code{\link{read.ijzip}} for reading several ROI objects from .zip files.
 ##' @examples
-##' path <- file.path(system.file(package = "retistruct"), "extdata", "ijroi")
+##' path <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi")
 ##' im <- as.raster(readPNG(file.path(path, "imagej-logo.png")))
 ##' plot(NA, NA, xlim=c(0, ncol(im)), ylim=c(nrow(im), 0), asp=1) 
 ##' rasterImage(im, 0,  nrow(im), ncol(im), 0, interpolate=FALSE)
@@ -167,9 +167,10 @@ read.ijroi <- function(file, verbose=FALSE) {
   r$fillColor <-    getInt(con)
   r$subtype <-      getShort(con)       # SUBTYPE
   if(r$type %in% types["line"] & !r$subtype %in% types["ARROW"]) {
-   r$options <- NA} else {
-   r$options < as.raw(getShort(con))}     # OPTIONS
-  
+    r$options <- NA
+  } else {
+    r$options < as.raw(getShort(con))
+  }     # OPTIONS
   if (r$type == "oval") {
     r$aspectRatio <- getFloat(con)      # ELLIPSE_ASPECT_RATIO
   } else {
@@ -229,15 +230,15 @@ read.ijroi <- function(file, verbose=FALSE) {
     }
   } 
 
-## Generate coordinates for r$type == line
-if (r$type %in% types["line"]){
-  r$coords <- matrix(NA, 2, 2)
-  r$coords[1,1] <- r$x1
-  r$coords[2,1] <- r$x2
-  r$coords[1,2] <- r$y1
-  r$coords[2,2] <- r$y2
-}
-
+  ## Generate coordinates for r$type == line
+  if (r$type %in% types["line"]){
+    r$coords <- matrix(NA, 2, 2)
+    r$coords[1,1] <- r$x1
+    r$coords[2,1] <- r$x2
+    r$coords[1,2] <- r$y1
+    r$coords[2,2] <- r$y2
+  }
+  
   r$strType <- names(types)[which(types==r$type)]
   r$types <- types
   close(con)
