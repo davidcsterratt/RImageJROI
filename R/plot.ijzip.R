@@ -11,6 +11,7 @@
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
 ##' dat <- read.ijzip(file)  
 ##' plot(dat)
+##' @method plot IJZIP
 ##' @export 
 ##' 
 plot.IJZIP <- function(x, add=FALSE, col.line = "black", col.polyline = "black", col.point = "black", xlab = "", ylab = "", main = "", ...) {
