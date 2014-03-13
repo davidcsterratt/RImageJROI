@@ -10,8 +10,15 @@ Maintainer: David C Sterratt <david.c.sterratt@ed.ac.uk>
 Author: David C Sterratt <david.c.sterratt@ed.ac.uk>, Mikko Vihtakari
     <mikko.vihtakari@uit.no>
 Depends:
-    R (>= 3.0.2),
+    R (>= 3.0.2)
+Suggests:
     png,
     testthat
 License: GPL-3
 LazyData: true
+Collate:
+    'RImageJROI-package.r'
+    'plot.ijroi.R'
+    'plot.ijzip.R'
+    'read.ijroi.R'
+    'read.ijzip.R'
