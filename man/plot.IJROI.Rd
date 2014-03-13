@@ -2,7 +2,7 @@
 \alias{plot.IJROI}
 \title{Plot IJROI object}
 \usage{
-  \method{plot}{IJROI} (x, add = FALSE, ...)
+\method{plot}{IJROI}(x, add = FALSE, ...)
 }
 \arguments{
   \item{x}{The IJROI object}
@@ -12,9 +12,9 @@
   \item{...}{Additional parameters}
 }
 \description{
-  Plot IJROI object
+Plot IJROI object
 }
 \author{
-  David Sterratt
+David Sterratt
 }
 

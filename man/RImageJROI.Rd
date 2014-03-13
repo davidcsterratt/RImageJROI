@@ -4,6 +4,6 @@
 \alias{RImageJROI-package}
 \title{RImageJROI}
 \description{
-  RImageJROI
+RImageJROI
 }
 
