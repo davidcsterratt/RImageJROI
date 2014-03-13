@@ -4,8 +4,12 @@
 ##' @param col.line the color of 'line' type ROI elements
 ##' @param col.polyline the color of 'polyline', 'freeline' and 'angle' type ROI elements
 ##' @param col.point the color of 'point' type ROI elements
-##' @param ... Additional parameters
-##' @author David Sterratt, Mikko Vihtakari
+##' @param main an overall title for the plot: see \code{title}
+##' @param xlab a title for the x axis: see \code{title}
+##' @param ylab a title for the y axis: see \code{title}
+##' @param ... Arguments to be passed to methods, such as graphical
+##' parameters (see \code{\link{par}})
+##' @author Mikko Vihtakari
 ##' @seealso \code{\link{read.ijzip}}
 ##' @examples
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
