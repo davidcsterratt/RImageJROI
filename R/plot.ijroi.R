@@ -1,14 +1,19 @@
 ##' @title Plot IJROI object
 ##' @param x The IJROI object
 ##' @param add Whether to add to an existing plot
+##' @param main an overall title for the plot: see \code{title}
+##' @param xlab a title for the x axis: see \code{title}
+##' @param ylab a title for the y axis: see \code{title}
 ##' @param ... Additional parameters
 ##' @method plot IJROI
 ##' @export
 ##' @author David Sterratt
-plot.IJROI <- function(x, add=FALSE, ...) {
+plot.IJROI <- function(x, add=FALSE,
+                       xlab = "", ylab = "", main = "", ...) {
   with(x, {
     if (!add) 
-      plot(NA, NA, xlim=range(coords[,1]), ylim=range(coords[,2]))
+      plot(NA, NA, xlim=range(coords[,1]), ylim=range(coords[,2],),
+           xlab = xlab, ylab = ylab, main = main)
 
     if (type == types["rect"]) {
       rect(left, bottom, right, top, ...)
