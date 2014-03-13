@@ -7,7 +7,8 @@ Authors@R: c(person("David C", "Sterratt", role=c("aut", "cph", "cre"),
     email="david.c.sterratt@ed.ac.uk"), person("Mikko", "Vihtakari",
     role=c("aut", "cph"), email="mikko.vihtakari@uit.no"))
 Maintainer: David C Sterratt <david.c.sterratt@ed.ac.uk>
-Author: David C Sterratt <david.c.sterratt@ed.ac.uk>, Mikko Vihtakari <mikko.vihtakari@uit.no>
+Author: David C Sterratt <david.c.sterratt@ed.ac.uk>, Mikko Vihtakari
+    <mikko.vihtakari@uit.no>
 Depends:
     R (>= 3.0.2),
     png,
