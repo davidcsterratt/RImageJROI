@@ -3,6 +3,8 @@ Title: Read ImageJ Region of Interest (ROI) files
 Description: Provides functions to read ImageJ (http://imagej.nih.gov/ij/)
     Region of Interest (ROI) files and to plot the ROIs.
 Version: 0.1
+URL: https://github.com/davidcsterratt/RImageJROI
+Date: 2014-03-14
 Authors@R: c(person("David C", "Sterratt", role=c("aut", "cph", "cre"),
     email="david.c.sterratt@ed.ac.uk"), person("Mikko", "Vihtakari",
     role=c("aut", "cph"), email="mikko.vihtakari@uit.no"))
@@ -16,9 +18,3 @@ Suggests:
     testthat
 License: GPL-3
 LazyData: true
-Collate:
-    'RImageJROI-package.r'
-    'plot.ijroi.R'
-    'plot.ijzip.R'
-    'read.ijroi.R'
-    'read.ijzip.R'
