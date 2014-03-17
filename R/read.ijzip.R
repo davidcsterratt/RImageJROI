@@ -42,11 +42,11 @@ if(list.files == FALSE){
   } else {
     roi.dat <- sapply(seq_along(files$Name), function(i){
     tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i], verbose = verbose)
-    tmp <- tmp[names(tmp) %in% c("name", "coords", "strType", "bottom", "left", "top", "right", "width", "height")]
+    tmp <- tmp[names(tmp) %in% c("name", "coords", "strType", "bottom", "left", "top", "right", "width", "height", "xrange", "yrange")]
     if(is.null(tmp$coords)){
       tmp$coords <- data.frame(x = c(tmp[["left"]], tmp[["right"]]), y = c(tmp[["bottom"]], tmp[["top"]]))} else {
         colnames(tmp[["coords"]]) <- c("x", "y")}
-    tmp2 <- list(c(tmp["coords"], tmp["bottom"], tmp["left"], tmp["top"], tmp["right"], tmp["width"], tmp["height"], tmp["strType"]))
+    tmp2 <- list(c(tmp["coords"], tmp["bottom"], tmp["left"], tmp["top"], tmp["right"], tmp["width"], tmp["height"], tmp["xrange"], tmp["yrange"], tmp["strType"]))
     names(tmp2) <- tmp[["name"]]
     tmp2})
   }
