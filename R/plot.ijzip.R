@@ -8,7 +8,7 @@
 ##' @param asp numeric defining the aspect ratio y/x: see \code{\link{plot.window}}. Defaults to 1.
 ##' @param ... Arguments to be passed to methods, such as graphical parameters (see \code{\link{par}}).
 ##' @details The function loops \code{\link{plot.IJROI}} plotting function over all elements in \code{x}. See \code{plot.IJROI} for further details.
-##' @author Mikko Vihtakari
+##' @author Mikko Vihtakari, David Sterratt
 ##' @seealso \code{\link{read.ijzip}}, \code{\link{plot.IJROI}}
 ##' @examples
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
