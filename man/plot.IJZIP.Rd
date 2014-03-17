@@ -2,44 +2,47 @@
 \alias{plot.IJZIP}
 \title{Plot IJZIP object}
 \usage{
-  \method{plot}{IJZIP} (x, add = FALSE, col.line = "black",
-    col.polyline = "black", col.point = "black", xlab = "",
-    ylab = "", main = "", ...)
+\method{plot}{IJZIP}(x, add = FALSE, xlab = "", ylab = "", main = "",
+  asp = 1, ...)
 }
 \arguments{
-  \item{x}{The IJZIP object}
+  \item{x}{The IJZIP object.}
 
-  \item{add}{Whether to add to an existing plot}
-
-  \item{col.line}{the color of 'line' type ROI elements}
-
-  \item{col.polyline}{the color of 'polyline', 'freeline'
-  and 'angle' type ROI elements}
-
-  \item{col.point}{the color of 'point' type ROI elements}
+  \item{add}{Whether to add to an existing plot.}
 
   \item{main}{an overall title for the plot: see
-  \code{title}}
+  \code{\link{title}}.}
 
-  \item{xlab}{a title for the x axis: see \code{title}}
+  \item{xlab}{a title for the x axis: see
+  \code{\link{title}}.}
 
-  \item{ylab}{a title for the y axis: see \code{title}}
+  \item{ylab}{a title for the y axis: see
+  \code{\link{title}}.}
+
+  \item{asp}{numeric defining the aspect ratio y/x: see
+  \code{\link{plot.window}}. Defaults to 1.}
 
   \item{...}{Arguments to be passed to methods, such as
-  graphical parameters (see \code{\link{par}})}
+  graphical parameters (see \code{\link{par}}).}
 }
 \description{
-  Plot IJZIP object
+Plots .zip files containing ImageJ ROI objects using the
+\link[=graphics]{'base' graphics} package.
+}
+\details{
+The function loops \code{\link{plot.IJROI}} plotting
+function over all elements in \code{x}. See
+\code{plot.IJROI} for further details.
 }
 \examples{
 file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
-dat <- read.ijzip(file)
-plot(dat)
+x <- read.ijzip(file)
+plot(x)
 }
 \author{
-  David Sterratt, Mikko Vihtakari
+Mikko Vihtakari, David Sterratt
 }
 \seealso{
-  \code{\link{read.ijzip}}
+\code{\link{read.ijzip}}, \code{\link{plot.IJROI}}
 }
 
