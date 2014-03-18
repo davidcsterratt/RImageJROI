@@ -156,7 +156,7 @@ read.ijroi <- function(file, verbose=FALSE) {
   } else {
     r$options < as.raw(getShort(con))
   }     # OPTIONS
-  if (r$type == "oval") {
+  if ((r$type == types["freehand"]) && (r$subtype == subtypes["ELLIPSE"])) {
     r$aspectRatio <- getFloat(con)      # ELLIPSE_ASPECT_RATIO
   } else {
     r$style <-      getByte(con)        # ARROW_STYLE
