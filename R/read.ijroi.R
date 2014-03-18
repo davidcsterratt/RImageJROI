@@ -1,3 +1,8 @@
+## This file is based on the ImageJ RoiDecoder class at:
+## http://imagej.nih.gov/ij/developer/source/ij/io/RoiDecoder.java.html
+## For information on how the ROIs are drawn, consult ROI methods in:
+## http://imagej.nih.gov/ij/developer/source/
+## 
 ##  ImageJ/NIH Image 64 byte ROI outline header
 ##     2 byte numbers are big-endian signed shorts
 ##     0-3     "Iout"
