@@ -157,7 +157,7 @@ read.ijroi <- function(file, verbose=FALSE) {
   r$strokeColor <-  getInt(con)
   r$fillColor <-    getInt(con)
   r$subtype <-      getShort(con)       # SUBTYPE
-  if(r$type %in% types["line"] & !r$subtype %in% types["ARROW"]) {
+  if(r$type %in% types["line"] & !r$subtype %in% subtypes["ARROW"]) {
     r$options <- NA
   } else {
     r$options < as.raw(getShort(con))
