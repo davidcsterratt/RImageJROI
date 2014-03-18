@@ -91,7 +91,8 @@ read.ijroi <- function(file, verbose=FALSE) {
   ## subtypes
   subtypes <- list(TEXT    = 1,
                    ARROW   = 2,
-                   ELLIPSE = 3)
+                   ELLIPSE = 3,
+                   IMAGE   = 4)
 
   ## options
   opts <- list(SPLINE_FIT    = as.raw(1),
