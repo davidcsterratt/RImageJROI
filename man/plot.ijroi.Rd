@@ -1,12 +1,12 @@
-\name{plot.IJROI}
-\alias{plot.IJROI}
-\title{Plot IJROI object}
+\name{plot.ijroi}
+\alias{plot.ijroi}
+\title{Plot ijroi object}
 \usage{
-  \method{plot}{IJROI} (x, add = FALSE, xlab = "",
+  \method{plot}{ijroi} (x, add = FALSE, xlab = "",
     ylab = "", main = "", asp = 1, ...)
 }
 \arguments{
-  \item{x}{The IJROI object.}
+  \item{x}{The \code{ijroi} object.}
 
   \item{add}{Whether to add to an existing plot.}
 
@@ -92,6 +92,6 @@ plot(x, col = "red")
 }
 \seealso{
   \code{\link{read.ijroi}}, \code{\link{read.ijzip}},
-  \code{\link{plot.IJZIP}}
+  \code{\link{plot.ijzip}}
 }
 

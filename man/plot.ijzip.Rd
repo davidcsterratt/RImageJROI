@@ -1,12 +1,12 @@
-\name{plot.IJZIP}
-\alias{plot.IJZIP}
-\title{Plot IJZIP object}
+\name{plot.ijzip}
+\alias{plot.ijzip}
+\title{Plot ijzip object}
 \usage{
-\method{plot}{IJZIP}(x, add = FALSE, xlab = "", ylab = "", main = "",
-  asp = 1, ...)
+  \method{plot}{ijzip} (x, add = FALSE, xlab = "",
+    ylab = "", main = "", asp = 1, ...)
 }
 \arguments{
-  \item{x}{The IJZIP object.}
+  \item{x}{The \code{ijzip} object.}
 
   \item{add}{Whether to add to an existing plot.}
 
@@ -26,13 +26,13 @@
   graphical parameters (see \code{\link{par}}).}
 }
 \description{
-Plots .zip files containing ImageJ ROI objects using the
-\link[=graphics]{'base' graphics} package.
+  Plots .zip files containing ImageJ ROI objects using the
+  \link[=graphics]{'base' graphics} package.
 }
 \details{
-The function loops \code{\link{plot.IJROI}} plotting
-function over all elements in \code{x}. See
-\code{plot.IJROI} for further details.
+  The function loops \code{\link{plot.ijroi}} plotting
+  function over all elements in \code{x}. See
+  \code{plot.ijroi} for further details.
 }
 \examples{
 file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
@@ -40,9 +40,9 @@ x <- read.ijzip(file)
 plot(x)
 }
 \author{
-Mikko Vihtakari, David Sterratt
+  Mikko Vihtakari, David Sterratt
 }
 \seealso{
-\code{\link{read.ijzip}}, \code{\link{plot.IJROI}}
+  \code{\link{read.ijzip}}, \code{\link{plot.ijroi}}
 }
 

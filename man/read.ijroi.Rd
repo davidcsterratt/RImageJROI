@@ -2,7 +2,7 @@
 \alias{read.ijroi}
 \title{Read an ImageJ ROI file}
 \usage{
-read.ijroi(file, verbose = FALSE)
+  read.ijroi(file, verbose = FALSE)
 }
 \arguments{
   \item{file}{Name of ImageJ ROI file to read}
@@ -10,11 +10,12 @@ read.ijroi(file, verbose = FALSE)
   \item{verbose}{Whether to report information}
 }
 \value{
-A structure of class IJROI containing the ROI information
+  A structure of class \code{ijroi} containing the ROI
+  information
 }
 \description{
-Read an ImageJ ROI file. This returns a structure
-containing the ImageJ data.
+  Read an ImageJ ROI file. This returns a structure
+  containing the ImageJ data.
 }
 \examples{
 library(png)
@@ -30,10 +31,10 @@ r <- read.ijroi(file.path(path, "oval.roi"))
 plot(r, TRUE)
 }
 \author{
-David Sterratt
+  David Sterratt
 }
 \seealso{
-\code{\link{read.ijzip}} for reading several ROI objects
-from .zip files.
+  \code{\link{read.ijzip}} for reading several ROI objects
+  from .zip files.
 }
 

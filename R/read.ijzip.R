@@ -6,9 +6,9 @@
 #' @param list.files logical, indicating whether a data.frame of ROI files in \code{file} should be returned instead of a list of results. Defaults to FALSE. If TRUE equals to \code{unzip(file, list = TRUE)}.
 #' @param print.all logical indicating whether to print all information from \code{\link{read.ijroi}} function as opposed to a subset of relevant information? Defaults to \code{FALSE}.
 #' @param verbose Whether to report information (see \code{\link{read.ijroi}}).
-#' @return An object of class \code{IJZIP} containing a list of the coordinates and types of ImageJ ROIs. Each element is named after option specified in \code{names}.
+#' @return An object of class \code{ijzip} containing a list of the coordinates and types of ImageJ ROIs. Each element is named after option specified in \code{names}.
 #' @author Mikko Vihtakari
-#' @seealso \code{\link{read.ijroi}}, \code{\link{plot.IJZIP}}.
+#' @seealso \code{\link{read.ijroi}}, \code{\link{plot.ijzip}}.
 #' @examples
 #' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
 #' dat <- read.ijzip(file)
@@ -63,7 +63,7 @@ if(list.files == FALSE){
     rep.names <- paste(sapply(strsplit(rep.names, "\\."), '[', 1), as.character(as.numeric(rep.numbers)+1), sep = "_")
     names(roi.dat) <- rep.names
   }
-class(roi.dat) <- "IJZIP"
+class(roi.dat) <- "ijzip"
   return(roi.dat)}
 
 if (list.files == TRUE) return(files)

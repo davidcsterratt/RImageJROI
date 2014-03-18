@@ -33,7 +33,7 @@
 ##' @title Read an ImageJ ROI file
 ##' @param file Name of ImageJ ROI file to read
 ##' @param verbose Whether to report information
-##' @return A structure of class IJROI containing the ROI information
+##' @return A structure of class \code{ijroi} containing the ROI information
 ##' @author David Sterratt
 ##' @export
 ##' @seealso \code{\link{read.ijzip}} for reading several ROI objects from .zip files.
@@ -242,7 +242,7 @@ read.ijroi <- function(file, verbose=FALSE) {
         r$yrange <- range(r$coords[,2])}
   
   close(con)
-  class(r) <- "IJROI"
+  class(r) <- "ijroi"
   return(r)
 }
 

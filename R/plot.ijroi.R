@@ -1,13 +1,13 @@
-##' @title Plot IJROI object
+##' @title Plot ijroi object
 ##' @description Plots ImageJ ROI objects using the \link[=graphics]{'base' graphics} package.
-##' @param x The IJROI object.
+##' @param x The \code{ijroi} object.
 ##' @param add Whether to add to an existing plot.
 ##' @param main an overall title for the plot: \code{\link{title}}.
 ##' @param xlab a title for the x axis: \code{\link{title}}.
 ##' @param ylab a title for the y axis: \code{\link{title}}.
 ##' @param asp numeric defining the aspect ratio y/x: see \code{\link{plot.window}}. Defaults to 1.
 ##' @param ... Additional parameters.
-##' @method plot IJROI
+##' @method plot ijroi
 ##' @details ImageJ ROI objects created with following tools are plotted using following graphics commands:
 ##' \itemize{
 ##' \item{Rectangle tool ("rect")} \code{\link{rect}}.
@@ -22,7 +22,7 @@
 ##' 
 ##' @export
 ##' @author David Sterratt, Mikko Vihtakari
-##' @seealso \code{\link{read.ijroi}}, \code{\link{read.ijzip}}, \code{\link{plot.IJZIP}}
+##' @seealso \code{\link{read.ijroi}}, \code{\link{read.ijzip}}, \code{\link{plot.ijzip}}
 ##' @examples
 ##' # 'oval' ROIs are plotted using polygon()
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "oval.roi")
@@ -65,7 +65,7 @@
 ##' x <- read.ijroi(file)
 ##' plot(x, col = "red")
 
-plot.IJROI <- function(x, add=FALSE, xlab = "", ylab = "", main = "", asp = 1, ...) {
+plot.ijroi <- function(x, add=FALSE, xlab = "", ylab = "", main = "", asp = 1, ...) {
   with(x, {
     if (!add) {
       plot(NA, NA, xlim=xrange, ylim=yrange, xlab = xlab, ylab = ylab, main = main, asp = asp)
