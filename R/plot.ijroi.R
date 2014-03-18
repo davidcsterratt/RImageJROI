@@ -49,7 +49,8 @@
 ##' x <- read.ijroi(file)
 ##' plot(x, col = "red")
 ##' 
-##' # Objects created using 'Elliptical selections' tool are saved as 'freehand' and do not come out right.
+##' # Objects created using 'Elliptical selections' tool are saved as
+##' # 'freehand' and do not come out right.
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "elliptical.roi")
 ##' x <- read.ijroi(file)
 ##' plot(x, col = "red") 

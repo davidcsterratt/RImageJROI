@@ -2,8 +2,8 @@
 \alias{plot.IJROI}
 \title{Plot IJROI object}
 \usage{
-\method{plot}{IJROI}(x, add = FALSE, xlab = "", ylab = "", main = "",
-  asp = 1, ...)
+  \method{plot}{IJROI} (x, add = FALSE, xlab = "",
+    ylab = "", main = "", asp = 1, ...)
 }
 \arguments{
   \item{x}{The IJROI object.}
@@ -23,27 +23,27 @@
   \item{...}{Additional parameters.}
 }
 \description{
-Plots ImageJ ROI objects using the \link[=graphics]{'base'
-graphics} package.
+  Plots ImageJ ROI objects using the
+  \link[=graphics]{'base' graphics} package.
 }
 \details{
-ImageJ ROI objects created with following tools are plotted
-using following graphics commands: \itemize{
-\item{Rectangle tool ("rect")} \code{\link{rect}}.
-\item{Oval selections ("oval")} \code{\link{polygon}}.
-\item{Elliptical selections ("freehand")}
-\code{\link{lines}}. Note that these are exported as
-"freehand" type and do not draw correctly at the moment.
-\item{Point Tool and Multi-Point Tool ("point")}
-\code{\link{points}}. \item{Straight Line ("line")}
-\code{\link{lines}}. \item{Segmented Line ("polyline")}
-\code{\link{lines}}. \item{Freehand Line ("freeline")}
-\code{\link{lines}}. } All graphics allow the additional
-parameters from appropriate functions. Aspect ratio
-(\code{asp}) is 1 by default leading to correct
-representation of ImageJ objects. If correct representation
-is not important, set \code{asp = NA} to use the R
-base-graphics default setting.
+  ImageJ ROI objects created with following tools are
+  plotted using following graphics commands: \itemize{
+  \item{Rectangle tool ("rect")} \code{\link{rect}}.
+  \item{Oval selections ("oval")} \code{\link{polygon}}.
+  \item{Elliptical selections ("freehand")}
+  \code{\link{lines}}. Note that these are exported as
+  "freehand" type and do not draw correctly at the moment.
+  \item{Point Tool and Multi-Point Tool ("point")}
+  \code{\link{points}}. \item{Straight Line ("line")}
+  \code{\link{lines}}. \item{Segmented Line ("polyline")}
+  \code{\link{lines}}. \item{Freehand Line ("freeline")}
+  \code{\link{lines}}. } All graphics allow the additional
+  parameters from appropriate functions. Aspect ratio
+  (\code{asp}) is 1 by default leading to correct
+  representation of ImageJ objects. If correct
+  representation is not important, set \code{asp = NA} to
+  use the R base-graphics default setting.
 }
 \examples{
 # 'oval' ROIs are plotted using polygon()
@@ -71,7 +71,8 @@ file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "segm
 x <- read.ijroi(file)
 plot(x, col = "red")
 
-# Objects created using 'Elliptical selections' tool are saved as 'freehand' and do not come out right.
+# Objects created using 'Elliptical selections' tool are saved as
+# 'freehand' and do not come out right.
 file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "elliptical.roi")
 x <- read.ijroi(file)
 plot(x, col = "red")
@@ -87,10 +88,10 @@ x <- read.ijroi(file)
 plot(x, col = "red")
 }
 \author{
-David Sterratt, Mikko Vihtakari
+  David Sterratt, Mikko Vihtakari
 }
 \seealso{
-\code{\link{read.ijroi}}, \code{\link{read.ijzip}},
-\code{\link{plot.IJZIP}}
+  \code{\link{read.ijroi}}, \code{\link{read.ijzip}},
+  \code{\link{plot.IJZIP}}
 }
 
