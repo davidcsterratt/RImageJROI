@@ -226,6 +226,15 @@ read.ijroi <- function(file, verbose=FALSE) {
   
   r$strType <- names(types)[which(types==r$type)]
   r$types <- types
+  
+  ## Add range to ease plotting
+  if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
+        r$xrange <- c(r$left, r$right)} else {
+        r$xrange <- range(r$coords[,1])}
+  if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
+        r$yrange <- c(r$bottom, r$top)} else {
+        r$yrange <- range(r$coords[,2])}
+  
   close(con)
   class(r) <- "IJROI"
   return(r)
