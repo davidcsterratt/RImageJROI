@@ -2,8 +2,8 @@
 \alias{read.ijzip}
 \title{Read ImageJ zip file containing several ROI files}
 \usage{
-  read.ijzip(file, verbose = FALSE, names = TRUE,
-    list.files = FALSE, print.all = FALSE)
+read.ijzip(file, names = TRUE, list.files = FALSE, print.all = FALSE,
+  verbose = FALSE)
 }
 \arguments{
   \item{file}{zip file containing a collection of ImageJ
@@ -28,23 +28,23 @@
   \code{\link{read.ijroi}}).}
 }
 \value{
-  An object of class \code{ijzip} containing a list of the
-  coordinates and types of ImageJ ROIs. Each element is
-  named after option specified in \code{names}.
+An object of class \code{ijzip} containing a list of the
+coordinates and types of ImageJ ROIs. Each element is named
+after option specified in \code{names}.
 }
 \description{
-  A wrapper function, which reads a zip file containing
-  ImageJ ROI files using \code{\link{read.ijroi}} function.
+A wrapper function, which reads a zip file containing
+ImageJ ROI files using \code{\link{read.ijroi}} function.
 }
 \examples{
 file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
-dat <- read.ijzip(file)
-plot(dat)
+x <- read.ijzip(file)
+plot(x)
 }
 \author{
-  Mikko Vihtakari
+Mikko Vihtakari
 }
 \seealso{
-  \code{\link{read.ijroi}}, \code{\link{plot.ijzip}}.
+\code{\link{read.ijroi}}, \code{\link{plot.ijzip}}.
 }
 
