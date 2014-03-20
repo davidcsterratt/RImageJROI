@@ -1,10 +1,11 @@
 Package: RImageJROI
 Title: Read ImageJ Region of Interest (ROI) files
 Description: Provides functions to read ImageJ (http://imagej.nih.gov/ij/)
-    Region of Interest (ROI) files and to plot the ROIs.
+    Region of Interest (ROI) files, to plot the ROIs and to convert them as
+    spatstat (http://spatstat.org/) spatial patterns.
 Version: 0.1
 URL: https://github.com/davidcsterratt/RImageJROI
-Date: 2014-03-14
+Date: 2014-03-20
 Authors@R: c(person("David C", "Sterratt", role=c("aut", "cph", "cre"),
     email="david.c.sterratt@ed.ac.uk"), person("Mikko", "Vihtakari",
     role=c("aut", "cph"), email="mikko.vihtakari@uit.no"))
@@ -13,6 +14,8 @@ Author: David C Sterratt <david.c.sterratt@ed.ac.uk>, Mikko Vihtakari
     <mikko.vihtakari@uit.no>
 Depends:
     R (>= 3.0.2)
+Imports:
+    spatstat
 Suggests:
     png,
     testthat
