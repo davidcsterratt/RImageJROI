@@ -2,8 +2,7 @@
 \alias{read.ijzip}
 \title{Read ImageJ zip file containing several ROI files}
 \usage{
-read.ijzip(file, names = TRUE, list.files = FALSE, read.all = FALSE,
-  verbose = FALSE)
+read.ijzip(file, names = TRUE, list.files = FALSE, verbose = FALSE)
 }
 \arguments{
   \item{file}{zip file containing a collection of ImageJ
@@ -18,11 +17,6 @@ read.ijzip(file, names = TRUE, list.files = FALSE, read.all = FALSE,
   data.frame of ROI files in \code{file} should be returned
   instead of a list of results. Defaults to FALSE. If TRUE
   equals to \code{unzip(file, list = TRUE)}.}
-
-  \item{read.all}{logical indicating whether to print all
-  information from \code{\link{read.ijroi}} function as
-  opposed to a subset of relevant information? Defaults to
-  \code{FALSE}.}
 
   \item{verbose}{Whether to report information (see
   \code{\link{read.ijroi}}).}

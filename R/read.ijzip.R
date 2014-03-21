@@ -4,7 +4,6 @@
 #' @param file zip file containing a collection of ImageJ ROI files
 #' @param names Logical, indicating whether the ROI file names should be used as names for the elements in the list (see Return). If FALSE a sequence of names specifying the type of ROI is automatically generated.
 #' @param list.files logical, indicating whether a data.frame of ROI files in \code{file} should be returned instead of a list of results. Defaults to FALSE. If TRUE equals to \code{unzip(file, list = TRUE)}.
-#' @param read.all logical indicating whether to print all information from \code{\link{read.ijroi}} function as opposed to a subset of relevant information? Defaults to \code{FALSE}.
 #' @param verbose Whether to report information (see \code{\link{read.ijroi}}).
 #' @return An object of class \code{ijzip} containing a list of the coordinates and types of ImageJ ROIs. Each element is named after option specified in \code{names}.
 #' @author Mikko Vihtakari
@@ -15,7 +14,7 @@
 #' plot(x)
 #' @export
 
-read.ijzip <- function(file, names = TRUE, list.files = FALSE, read.all = FALSE, verbose = FALSE){
+read.ijzip <- function(file, names = TRUE, list.files = FALSE, verbose = FALSE) {
 
 ## Read files in the zip file
 files <- unzip(file, list = TRUE)
@@ -30,39 +29,19 @@ if(list.files == FALSE){
   unzip(file, exdir = location)
   
   # Read ROIs
-  if(read.all){
-    roi.dat <- sapply(seq_along(files$Name), function(i){
-      tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i], verbose = verbose)
-      if(is.null(tmp$coords)){
-      tmp$coords <- data.frame(x = NA, y = NA)} else {
-        colnames(tmp[["coords"]]) <- c("x", "y")}
-      tmp2 <- list(c(tmp))
-      names(tmp2) <- tmp[["name"]]
-      return(tmp2)})
-  } else {
-    roi.dat <- sapply(seq_along(files$Name), function(i){
+  roi.dat <- sapply(seq_along(files$Name), function(i) {
     tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i], verbose = verbose)
-      xclude.always <- c("version", "types")
-      tmp <- tmp[!names(tmp) %in% xclude.always]
-      
-      xclude.if.0 <- c("n", "strokeWidth", "shapeRoiSize", "strokeColor", "fillColor", "style", "headSize", "arcSize", "position")
-      xclude.these <- unlist(lapply(tmp[names(tmp) %in% xclude.if.0], function(k) c(k == 0 | is.na(k))))
-      xclude.these <- names(xclude.these[xclude.these == TRUE])
-      tmp <- tmp[!names(tmp) %in% xclude.these]
-      
-      if(tmp$type == 1 | tmp$type ==2 | tmp$type == 10) {xclude.these.too <- c("x1", "y1", "x2", "y2")} else {
-        xclude.these.too <- c("bottom", "left", "top", "right", "width", "height")}
-      tmp <- tmp[!names(tmp) %in% xclude.these.too]
-    
     if(is.null(tmp$coords)){
       Xcoords <- unlist(c(tmp[names(tmp) %in% c("left", "x1")], tmp[names(tmp) %in% c("right", "x2")]))
       Ycoords <- unlist(c(tmp[names(tmp) %in% c("top", "y1")], tmp[names(tmp) %in% c("bottom", "y2")]))
-      tmp$coords <- data.frame(x = Xcoords, y = Ycoords)} else {
-        colnames(tmp[["coords"]]) <- c("x", "y")}
+      tmp$coords <- data.frame(x = Xcoords, y = Ycoords)
+    } else {
+      colnames(tmp[["coords"]]) <- c("x", "y")
+    }
     tmp2 <- list(tmp)
     names(tmp2) <- tmp[["name"]]
-    tmp2})
-  }
+    tmp2
+  })
   
   ## Remove the temporary folder
   unlink(location, recursive = TRUE)
