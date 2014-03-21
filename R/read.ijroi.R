@@ -36,7 +36,9 @@
 ##' @return A structure of class \code{ijroi} containing the ROI information
 ##' @author David Sterratt
 ##' @export
-##' @seealso \code{\link{read.ijzip}} for reading several ROI objects from .zip files.
+##' @seealso \code{\link{plot.ijroi}} for plotting single ROI objects.
+##' 
+##' \code{\link{read.ijzip}} for reading several ROI objects from .zip files.
 ##' @examples
 ##' library(png)
 ##' path <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi")
@@ -219,8 +221,8 @@ read.ijroi <- function(file, verbose=FALSE) {
       r$coords[,1] <- r$coords[,1] + r$left
       r$coords[,2] <- r$coords[,2] + r$top
     }
-  } 
-
+  }
+  
   ## Generate coordinates for r$type == line
   if (r$type %in% types["line"]){
     r$coords <- matrix(NA, 2, 2)
@@ -231,14 +233,17 @@ read.ijroi <- function(file, verbose=FALSE) {
   }
   
   r$strType <- names(types)[which(types==r$type)]
+  if(r$subtype == 1) r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
+  if(r$subtype == 2) r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
+  if(r$subtype == 3) r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
   r$types <- types
   
   ## Add range to ease plotting
   if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
-        r$xrange <- c(r$left, r$right)} else {
+        r$xrange <- range(c(r$left, r$right))} else {
         r$xrange <- range(r$coords[,1])}
   if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
-        r$yrange <- c(r$bottom, r$top)} else {
+        r$yrange <- range(c(r$top, r$bottom))} else {
         r$yrange <- range(r$coords[,2])}
   
   close(con)

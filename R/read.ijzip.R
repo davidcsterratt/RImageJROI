@@ -11,11 +11,11 @@
 #' @seealso \code{\link{read.ijroi}}, \code{\link{plot.ijzip}}.
 #' @examples
 #' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
-#' dat <- read.ijzip(file)
-#' plot(dat)
+#' x <- read.ijzip(file)
+#' plot(x)
 #' @export
 
-read.ijzip <- function(file, verbose = FALSE, names = TRUE, list.files = FALSE, print.all = FALSE){
+read.ijzip <- function(file, names = TRUE, list.files = FALSE, print.all = FALSE, verbose = FALSE){
 
 ## Read files in the zip file
 files <- unzip(file, list = TRUE)
@@ -42,11 +42,24 @@ if(list.files == FALSE){
   } else {
     roi.dat <- sapply(seq_along(files$Name), function(i){
     tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i], verbose = verbose)
-    tmp <- tmp[names(tmp) %in% c("name", "coords", "strType", "bottom", "left", "top", "right", "width", "height", "xrange", "yrange")]
+      xclude.always <- c("version", "types")
+      tmp <- tmp[!names(tmp) %in% xclude.always]
+      
+      xclude.if.0 <- c("n", "strokeWidth", "shapeRoiSize", "strokeColor", "fillColor", "style", "headSize", "arcSize", "position")
+      xclude.these <- unlist(lapply(tmp[names(tmp) %in% xclude.if.0], function(k) c(k == 0 | is.na(k))))
+      xclude.these <- names(xclude.these[xclude.these == TRUE])
+      tmp <- tmp[!names(tmp) %in% xclude.these]
+      
+      if(tmp$type == 1 | tmp$type ==2 | tmp$type == 10) {xclude.these.too <- c("x1", "y1", "x2", "y2")} else {
+        xclude.these.too <- c("bottom", "left", "top", "right", "width", "height")}
+      tmp <- tmp[!names(tmp) %in% xclude.these.too]
+    
     if(is.null(tmp$coords)){
-      tmp$coords <- data.frame(x = c(tmp[["left"]], tmp[["right"]]), y = c(tmp[["bottom"]], tmp[["top"]]))} else {
+      Xcoords <- unlist(c(tmp[names(tmp) %in% c("left", "x1")], tmp[names(tmp) %in% c("right", "x2")]))
+      Ycoords <- unlist(c(tmp[names(tmp) %in% c("top", "y1")], tmp[names(tmp) %in% c("bottom", "y2")]))
+      tmp$coords <- data.frame(x = Xcoords, y = Ycoords)} else {
         colnames(tmp[["coords"]]) <- c("x", "y")}
-    tmp2 <- list(c(tmp["coords"], tmp["bottom"], tmp["left"], tmp["top"], tmp["right"], tmp["width"], tmp["height"], tmp["xrange"], tmp["yrange"], tmp["strType"]))
+    tmp2 <- list(tmp)
     names(tmp2) <- tmp[["name"]]
     tmp2})
   }
@@ -64,7 +77,7 @@ if(list.files == FALSE){
     names(roi.dat) <- rep.names
   }
 class(roi.dat) <- "ijzip"
-  return(roi.dat)}
+return(roi.dat)}
 
 if (list.files == TRUE) return(files)
 }
