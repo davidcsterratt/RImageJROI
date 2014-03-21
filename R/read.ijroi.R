@@ -231,12 +231,12 @@ read.ijroi <- function(file, verbose=FALSE) {
     r$coords[1,2] <- r$y1
     r$coords[2,2] <- r$y2
   }
-  
+  r$types <- types  
   r$strType <- names(types)[which(types==r$type)]
-  if(r$subtype == 1) r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
-  if(r$subtype == 2) r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
-  if(r$subtype == 3) r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
-  r$types <- types
+
+  if (r$subtype %in% 1:length(names(subtypes))) {
+    r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
+  }
   
   ## Add range to ease plotting
   if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
