@@ -1,5 +1,6 @@
 S3method(plot,ijroi)
 S3method(plot,ijzip)
+S3method(print,ijroi)
 export(ij2spatstat)
 export(read.ijroi)
 export(read.ijzip)

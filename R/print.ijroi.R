@@ -4,8 +4,9 @@
 ##' Defaults to \code{FALSE}.
 ##' @param x \code{ijroi} object to be printed.
 ##' @param ... further arguments passed to \code{\link{print}}.
-##' @author Mikko Vihtakari, David Sterratt
 ##' @method print ijroi
+##' @export
+##' @author Mikko Vihtakari, David Sterratt
 ##' @seealso \code{\link{read.ijroi}}
 print.ijroi <- function(x, verbose=FALSE, ...) {
   if (!verbose) {
