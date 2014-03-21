@@ -30,17 +30,11 @@ if(list.files == FALSE){
   
   # Read ROIs
   roi.dat <- sapply(seq_along(files$Name), function(i) {
-    tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i], verbose = verbose)
-    if(is.null(tmp$coords)){
-      Xcoords <- unlist(c(tmp[names(tmp) %in% c("left", "x1")], tmp[names(tmp) %in% c("right", "x2")]))
-      Ycoords <- unlist(c(tmp[names(tmp) %in% c("top", "y1")], tmp[names(tmp) %in% c("bottom", "y2")]))
-      tmp$coords <- data.frame(x = Xcoords, y = Ycoords)
-    } else {
-      colnames(tmp[["coords"]]) <- c("x", "y")
-    }
+    tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i],
+                      verbose = verbose)
     tmp2 <- list(tmp)
     names(tmp2) <- tmp[["name"]]
-    tmp2
+    return(tmp2)
   })
   
   ## Remove the temporary folder

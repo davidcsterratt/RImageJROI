@@ -219,6 +219,7 @@ read.ijroi <- function(file, verbose=FALSE) {
       r$coords[,2] <- r$coords[,2] + r$top
     }
   }
+  close(con)
   
   ## Generate coordinates for r$type == line
   if (r$type %in% types["line"]){
@@ -228,11 +229,27 @@ read.ijroi <- function(file, verbose=FALSE) {
     r$coords[1,2] <- r$y1
     r$coords[2,2] <- r$y2
   }
-  r$types <- types  
-  r$strType <- names(types)[which(types==r$type)]
 
+  ## Fallback for if there are no co-ordinates
+  if (is.null(r$coords)) {
+    Xcoords <- unlist(c(r[names(r) %in% c("left", "x1")],
+                        r[names(r) %in% c("right", "x2")]))
+    Ycoords <- unlist(c(r[names(r) %in% c("top", "y1")],
+                        r[names(r) %in% c("bottom", "y2")]))
+    r$coords <- data.frame(x = Xcoords, y = Ycoords)
+  }
+
+  ## Name columns of coordinates
+  colnames(r$coords) <- c("x", "y")
+
+  
+  ## Add type information
+  r$types <- types  
+  r$strType <- names(types)[which(types == r$type)]
+
+  ## Add subtype information
   if (r$subtype %in% 1:length(names(subtypes))) {
-    r$strSubtype <- names(subtypes)[which(subtypes==r$subtype)]
+    r$strSubtype <- names(subtypes)[which(subtypes == r$subtype)]
   }
   
   ## Add range to ease plotting
@@ -246,8 +263,8 @@ read.ijroi <- function(file, verbose=FALSE) {
   } else {
     r$yrange <- range(r$coords[,2])
   }
+
   
-  close(con)
   class(r) <- "ijroi"
   return(r)
 }
