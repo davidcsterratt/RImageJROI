@@ -189,10 +189,7 @@ read.ijroi <- function(file, verbose=FALSE) {
     ##          roi.setPosition(position);
     ## return roi;
   }
-  ## if (r$type %in% types[c("rect")]) {
-
-  ## if (r$type %in% types[c("oval")]) {
-
+  
   if (r$type %in% types["line"]) {
     if (r$subtype %in% types["ARROW"]) {
       r$doubleHeaded <- (r$options & opts$DOUBLE_HEADED) !=0
@@ -240,11 +237,15 @@ read.ijroi <- function(file, verbose=FALSE) {
   
   ## Add range to ease plotting
   if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
-        r$xrange <- range(c(r$left, r$right))} else {
-        r$xrange <- range(r$coords[,1])}
+    r$xrange <- range(c(r$left, r$right))
+  } else {
+    r$xrange <- range(r$coords[,1])
+  }
   if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
-        r$yrange <- range(c(r$top, r$bottom))} else {
-        r$yrange <- range(r$coords[,2])}
+    r$yrange <- range(c(r$top, r$bottom))
+  } else {
+    r$yrange <- range(r$coords[,2])
+  }
   
   close(con)
   class(r) <- "ijroi"
