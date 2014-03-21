@@ -252,30 +252,9 @@ read.ijroi <- function(file, verbose=FALSE) {
   return(r)
 }
 
-## Demo
-## demo.roi <- function() {
-##   im <- as.raster(readPNG("~/image.png"))
-##   plot(NA, NA, xlim=c(0, ncol(im)), ylim=c(nrow(im), 0), asp=1) 
-##   rasterImage(im, 0,  nrow(im), ncol(im), 0)
-##   r <- read.roi("~/image.roi")
-##   plot(r, TRUE, col="cyan")
-##   return(r)
-## }
-
-## ##                         if (subtype==ELLIPSE) {
-## ##                             double ex1 = getFloat(X1);      
-## ##                             double ey1 = getFloat(Y1);      
-## ##                             double ex2 = getFloat(X2);      
-## ##                             double ey2 = getFloat(Y2);
-
-## ##                             roi = new EllipseRoi(ex1,ey1,ex2,ey2,aspectRatio);
-## ##                             break;
-## ##                         }
-## ##             default:
-## ##                 throw new IOException("Unrecognized ROI type: "+type);
-## ##         }
-## ##         if (name!=null) roi.setName(name);
-        
+## Below is some unimplemented functionality from
+## http://imagej.nih.gov/ij/developer/source/ij/io/RoiDecoder.java.html
+## 
 ## ##         // read stroke width, stroke color and fill color (1.43i or later)
 ## ##         if (version>=218) {
 ## ##             getStrokeWidthAndColor(roi);
