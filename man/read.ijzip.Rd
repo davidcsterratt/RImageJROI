@@ -2,7 +2,7 @@
 \alias{read.ijzip}
 \title{Read ImageJ zip file containing several ROI files}
 \usage{
-read.ijzip(file, names = TRUE, list.files = FALSE, print.all = FALSE,
+read.ijzip(file, names = TRUE, list.files = FALSE, read.all = FALSE,
   verbose = FALSE)
 }
 \arguments{
@@ -19,7 +19,7 @@ read.ijzip(file, names = TRUE, list.files = FALSE, print.all = FALSE,
   instead of a list of results. Defaults to FALSE. If TRUE
   equals to \code{unzip(file, list = TRUE)}.}
 
-  \item{print.all}{logical indicating whether to print all
+  \item{read.all}{logical indicating whether to print all
   information from \code{\link{read.ijroi}} function as
   opposed to a subset of relevant information? Defaults to
   \code{FALSE}.}

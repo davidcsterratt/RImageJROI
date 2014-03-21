@@ -4,7 +4,7 @@
 #' @param file zip file containing a collection of ImageJ ROI files
 #' @param names Logical, indicating whether the ROI file names should be used as names for the elements in the list (see Return). If FALSE a sequence of names specifying the type of ROI is automatically generated.
 #' @param list.files logical, indicating whether a data.frame of ROI files in \code{file} should be returned instead of a list of results. Defaults to FALSE. If TRUE equals to \code{unzip(file, list = TRUE)}.
-#' @param print.all logical indicating whether to print all information from \code{\link{read.ijroi}} function as opposed to a subset of relevant information? Defaults to \code{FALSE}.
+#' @param read.all logical indicating whether to print all information from \code{\link{read.ijroi}} function as opposed to a subset of relevant information? Defaults to \code{FALSE}.
 #' @param verbose Whether to report information (see \code{\link{read.ijroi}}).
 #' @return An object of class \code{ijzip} containing a list of the coordinates and types of ImageJ ROIs. Each element is named after option specified in \code{names}.
 #' @author Mikko Vihtakari
@@ -15,7 +15,7 @@
 #' plot(x)
 #' @export
 
-read.ijzip <- function(file, names = TRUE, list.files = FALSE, print.all = FALSE, verbose = FALSE){
+read.ijzip <- function(file, names = TRUE, list.files = FALSE, read.all = FALSE, verbose = FALSE){
 
 ## Read files in the zip file
 files <- unzip(file, list = TRUE)
@@ -30,7 +30,7 @@ if(list.files == FALSE){
   unzip(file, exdir = location)
   
   # Read ROIs
-  if(print.all){
+  if(read.all){
     roi.dat <- sapply(seq_along(files$Name), function(i){
       tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i], verbose = verbose)
       if(is.null(tmp$coords)){
