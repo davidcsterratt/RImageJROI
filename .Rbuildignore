@@ -1,1 +1,3 @@
 ^RImageJROI.*\.tar\.gz$
+^.*\.Rproj$
+^\.Rproj\.user$
