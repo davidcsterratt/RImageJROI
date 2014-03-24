@@ -154,16 +154,13 @@ read.ijroi <- function(file, verbose=FALSE) {
   r$y1 <-           getFloat(con)     
   r$x2 <-           getFloat(con)     
   r$y2 <-           getFloat(con)
-  r$strokeWidth <-  getShort(con)       # STROKE_WIDTH
-  r$shapeRoiSize <- getInt(con)         # SHAPE_ROI_SIZE
-  r$strokeColor <-  getInt(con)
-  r$fillColor <-    getInt(con)
-  r$subtype <-      getShort(con)       # SUBTYPE
-  if(r$type %in% types["line"] & !r$subtype %in% subtypes["ARROW"]) {
-    r$options <- NA
-  } else {
-    r$options < as.raw(getShort(con))
-  }     # OPTIONS
+  r$strokeWidth <-  getShort(con)  # 34-35 stroke width (v1.43i or later) STROKE_WIDTH
+  r$shapeRoiSize <- getInt(con)    # 36-39 ShapeRoi size (type must be 1 if this value>0) SHAPE_ROI_SIZE
+  r$strokeColor <-  getInt(con)    # 40-43 stroke color (v1.43i or later)
+  r$fillColor <-    getInt(con)    # 44-47 fill color (v1.43i or later) FILL_COLOR 
+  r$subtype <-      getShort(con)  # 48-49 subtype (v1.43k or later)    SUBTYPE
+  r$options <-      getShort(con)  # 50-51 options (v1.43k or later)    OPTIONS
+  ## 52-55   style information or aspect ratio (v1.43p or later)
   if ((r$type == types["freehand"]) && (r$subtype == subtypes["ELLIPSE"])) {
     r$aspectRatio <- getFloat(con)      # ELLIPSE_ASPECT_RATIO
   } else {

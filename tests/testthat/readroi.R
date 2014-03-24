@@ -35,3 +35,11 @@ test_that("dimensions are correct", {
   expect_that(r$width,  equals(31))
   expect_that(r$height, equals(20))
 })
+
+context("Reading test file with options")
+test_that("options are read", {
+  r <- read.ijroi(file.path(path, "test.roi"))
+  print(r)
+  expect_that(r$options, equals(0))
+})
+
