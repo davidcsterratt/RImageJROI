@@ -137,22 +137,23 @@ read.ijroi <- function(file, verbose=FALSE) {
   ## Create place to store data
   r <- list()
 
-  ## Get the data. This all has to be in the order corresponding to the
-  ## positions mentioned at the top of the file
-  getShort(con)                         # Unused
-  r$version <-      getShort(con)
-  r$type <-         getByte(con)
-  getByte(con)                          # Unused
-  r$top <-          getShort(con)       # TOP
-  r$left <-         getShort(con)       # LEFT
-  r$bottom <-       getShort(con)       # Bottom
-  r$right <-        getShort(con)       # RIGHT
+  ## Get the data. This all has to be in the order corresponding to
+  ## the positions mentioned at the top of the file. Uppercase text
+  ## corresponds to the static variables used in the ImageJ java file.
+  getShort(con)                    # 0-3 "Iout" Unused
+  r$version <-      getShort(con)  # 4-5 version (>=217)
+  r$type <-         getByte(con)   # 6-7 roi type
+  getByte(con)                     # Unused
+  r$top <-          getShort(con)  # 8-9   top TOP
+  r$left <-         getShort(con)  # 10-11 left LEFT
+  r$bottom <-       getShort(con)  # 12-13 bottom Bottom
+  r$right <-        getShort(con)  # 14-15 right  RIGHT
   r$width <-    with(r, right-left)
   r$height <-   with(r, bottom-top)
-  r$n <-            getShort(con)       # N_COORDINATES
-  r$x1 <-           getFloat(con)     
-  r$y1 <-           getFloat(con)     
-  r$x2 <-           getFloat(con)     
+  r$n <-            getShort(con)  # 16-17 NCoordinates N_COORDINATES
+  r$x1 <-           getFloat(con)  # 18-33 x1,y1,x2,y2 (straight line)
+  r$y1 <-           getFloat(con) 
+  r$x2 <-           getFloat(con) 
   r$y2 <-           getFloat(con)
   r$strokeWidth <-  getShort(con)  # 34-35 stroke width (v1.43i or later) STROKE_WIDTH
   r$shapeRoiSize <- getInt(con)    # 36-39 ShapeRoi size (type must be 1 if this value>0) SHAPE_ROI_SIZE
@@ -162,16 +163,17 @@ read.ijroi <- function(file, verbose=FALSE) {
   r$options <-      getShort(con)  # 50-51 options (v1.43k or later)    OPTIONS
   ## 52-55   style information or aspect ratio (v1.43p or later)
   if ((r$type == types["freehand"]) && (r$subtype == subtypes["ELLIPSE"])) {
-    r$aspectRatio <- getFloat(con)      # ELLIPSE_ASPECT_RATIO
+    r$aspectRatio <- getFloat(con) # ELLIPSE_ASPECT_RATIO
   } else {
-    r$style <-      getByte(con)        # ARROW_STYLE
-    r$headSize <-   getByte(con)        # ARROW_HEAD_SIZE    
-    r$arcSize <-    getShort(con)       # ROUNDED_RECT_ARC_SIZE
+    r$style <-      getByte(con)   # 52-52 arrow style  (v1.43p or later)
+    r$headSize <-   getByte(con)   # 53-53 arrow head size (v1.43p or later) ARROW_HEAD_SIZE    
+    r$arcSize <-    getShort(con)  # 54-55 rounded rect arc size (v1.43p or later) ROUNDED_RECT_ARC_SIZE
   }
-  r$position <-     getInt(con)         # POSITION
-  getShort(con)                         # Unused
-  getShort(con)                         # Unused
+  r$position <-     getInt(con)    # 56-59 position POSITION
+  getShort(con)                    # 60-63   reserved (zeros) Unused
+  getShort(con)                    # Unused
 
+  ## 64-       x-coordinates (short), followed by y-coordinates
   if (verbose)
     message("Reading coordinate data")
   
