@@ -1,5 +1,5 @@
 ##' @title Print \code{ijroi} objects
-##' @param verbose logical indicating whether to print all information
+##' @param all logical indicating whether to print all information
 ##' from ijroi object as opposed to a subset of relevant information.
 ##' Defaults to \code{FALSE}.
 ##' @param x \code{ijroi} object to be printed.
@@ -8,8 +8,8 @@
 ##' @export
 ##' @author Mikko Vihtakari, David Sterratt
 ##' @seealso \code{\link{read.ijroi}}
-print.ijroi <- function(x, verbose=FALSE, ...) {
-  if (!verbose) {
+print.ijroi <- function(x, all=FALSE, ...) {
+  if (!all) {
     ## Exclude fields irrelevant to the type
     if (x$type %in% x$types[c("rect", "oval", "point")]) {
       exclude<- c("x1", "y1", "x2", "y2")

@@ -2,10 +2,10 @@
 \alias{print.ijroi}
 \title{Print \code{ijroi} objects}
 \usage{
-\method{print}{ijroi}(x, verbose = FALSE, ...)
+\method{print}{ijroi}(x, all = FALSE, ...)
 }
 \arguments{
-  \item{verbose}{logical indicating whether to print all
+  \item{all}{logical indicating whether to print all
   information from ijroi object as opposed to a subset of
   relevant information. Defaults to \code{FALSE}.}
 
