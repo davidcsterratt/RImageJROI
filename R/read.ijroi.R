@@ -97,9 +97,9 @@ read.ijroi <- function(file, verbose=FALSE) {
                    IMAGE   = 4)
 
   ## options
-  opts <- list(SPLINE_FIT    = as.raw(1),
-               DOUBLE_HEADED = as.raw(2),
-               OUTLINE       = as.raw(4))
+  opts <- list(SPLINE_FIT    = 1,
+               DOUBLE_HEADED = 2,
+               OUTLINE       = 4)
   
   ## types
   types <- list(polygon  = 0,
@@ -190,9 +190,9 @@ read.ijroi <- function(file, verbose=FALSE) {
   }
   
   if (r$type %in% types["line"]) {
-    if (r$subtype %in% types["ARROW"]) {
-      r$doubleHeaded <- (r$options & opts$DOUBLE_HEADED) !=0
-      r$outline <- (r$options & opts$OUTLINE) !=0
+    if (r$subtype %in% subtypes["ARROW"]) {
+      r$doubleHeaded <- (r$options & opts$DOUBLE_HEADED)
+      r$outline <- (r$options & opts$OUTLINE)
       ##                     if (style>=Arrow.FILLED && style<=Arrow.OPEN)
       ##                         ((Arrow)roi).setStyle(style);
 
@@ -247,7 +247,8 @@ read.ijroi <- function(file, verbose=FALSE) {
   r$strType <- names(types)[which(types == r$type)]
 
   ## Add subtype information
-  if (r$subtype %in% 1:length(names(subtypes))) {
+  if (r$subtype != 0) {
+    r$subtypes <- subtypes
     r$strSubtype <- names(subtypes)[which(subtypes == r$subtype)]
   }
   
