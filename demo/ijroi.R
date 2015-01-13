@@ -1,3 +1,4 @@
+library(png)
 path <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi")
 im <- as.raster(readPNG(file.path(path, "imagej-logo.png")))
 plot(NA, NA, xlim=c(0, ncol(im)), ylim=c(nrow(im), 0), asp=1) 
