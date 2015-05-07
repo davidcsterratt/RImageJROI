@@ -1,0 +1,19 @@
+CHANGES IN VERSION 0.1-1 - Released 2015/05/07
+
+CODE IMPROVEMENTS
+
+* As per CRAN policies, the title in the DESCRIPTION file is now in title
+  case.
+
+BUG FIXES
+
+* Fix for Issue #12: Tests don't run during R CMD check
+  (https://github.com/davidcsterratt/RImageJROI/issues/12)
+  This was giving an error with the new (2015/05/07) version of
+  testthat
+
+* Fix for Issue #14:  demo(ijroi) broken
+  (https://github.com/davidcsterratt/RImageJROI/issues/14)
+
+* Fix for Issue #13: Test failures
+  (https://github.com/davidcsterratt/RImageJROI/issues/13)
