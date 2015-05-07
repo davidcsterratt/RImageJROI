@@ -5,7 +5,7 @@ Description: Provides functions to read ImageJ (http://imagej.nih.gov/ij/)
     spatstat (http://spatstat.org/) spatial patterns.
 Version: 0.1.1
 URL: https://github.com/davidcsterratt/RImageJROI
-Date: 2014-03-20
+Date: 2015-05-07
 Authors@R: c(person("David C", "Sterratt", role=c("aut", "cph", "cre"),
     email="david.c.sterratt@ed.ac.uk"), person("Mikko", "Vihtakari",
     role=c("aut", "cph"), email="mikko.vihtakari@uit.no"))
