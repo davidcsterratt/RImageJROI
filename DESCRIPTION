@@ -3,18 +3,19 @@ Title: Read 'ImageJ' Region of Interest (ROI) Files
 Description: Provides functions to read 'ImageJ' (http://imagej.nih.gov/ij/)
     Region of Interest (ROI) files, to plot the ROIs and to convert them to
     'spatstat' (http://spatstat.org/) spatial patterns.
-Version: 0.1.1
+Version: 0.1.2
 URL: https://github.com/davidcsterratt/RImageJROI
-Date: 2015-05-07
+Date: 2021-02-11
 Authors@R: c(person("David C", "Sterratt", role=c("aut", "cph", "cre"),
     email="david.c.sterratt@ed.ac.uk"), person("Mikko", "Vihtakari",
     role=c("aut", "cph"), email="mikko.vihtakari@uit.no"))
 Depends:
     R (>= 3.0.2)
 Imports:
-    spatstat
+    spatstat.geom, spatstat (>= 2.0.0)
 Suggests:
     png,
     testthat
 License: GPL-3
 LazyData: true
+RoxygenNote: 7.1.1
