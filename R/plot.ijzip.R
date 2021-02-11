@@ -12,8 +12,10 @@
 ##' @seealso \code{\link{read.ijzip}}, \code{\link{plot.ijroi}}
 ##' @examples
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "ijzip.zip")
-##' x <- read.ijzip(file)  
+##' x <- read.ijzip(file)
 ##' plot(x)
+##' @importFrom graphics axis plot
+##' @importFrom utils unzip
 ##' @method plot ijzip
 ##' @export 
 ##' 

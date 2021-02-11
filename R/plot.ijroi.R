@@ -7,6 +7,7 @@
 ##' @param ylab a title for the y axis: \code{\link{title}}.
 ##' @param asp numeric defining the aspect ratio y/x: see \code{\link{plot.window}}. Defaults to 1.
 ##' @param ... Additional parameters.
+##' @importFrom graphics axis plot
 ##' @method plot ijroi
 ##' @details ImageJ ROI objects created with following tools are plotted using following graphics commands:
 ##' \itemize{
@@ -28,23 +29,23 @@
 ##' @examples
 ##' # type 0 'polygon' ROIs are plotted using lines()
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "polygon.roi")
-##' x <- read.ijroi(file) 
-##' plot(x, col = "red") 
+##' x <- read.ijroi(file)
+##' plot(x, col = "red")
 ##' 
 ##' # type 1 'rect' ROIs are plotted using rect()
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "rect.roi")
 ##' x <- read.ijroi(file)
-##' plot(x, border = "red") 
+##' plot(x, border = "red")
 ##' 
 ##' # type 2 'oval' ROIs are plotted using polygon()
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "oval.roi")
 ##' x <- read.ijroi(file)
-##' plot(x, border = "red") 
+##' plot(x, border = "red")
 ##' 
 ##' # type 3 'line' ROIs (among others listed in 'details') are plotted using lines()
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "line.roi")
 ##' x <- read.ijroi(file)
-##' plot(x, col = "red") 
+##' plot(x, col = "red")
 ##' 
 ##' # type 3 arrows are a subtype of 'line'. Plotted using arrows(). The stroke width is
 ##' # carried over. To change width, use lwd argument
@@ -68,19 +69,19 @@
 ##' plot(x, col = "red")
 ##' 
 ##' # type 7 Objects created using 'Elliptical selections' tool are also saved as
-##' # 'freehand', but with subtype 'ELLIPSE'. The coordinates for this type are flawed 
+##' # 'freehand', but with subtype 'ELLIPSE'. The coordinates for this type are flawed
 ##' # and plotting is done using equation for an ellipse
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "elliptical.roi")
 ##' x <- read.ijroi(file)
 ##' plot(x, border = "red")
 ##' lines(x$coords[,1], x$coords[,2]) ## plotted based on coordinates.
-##'  
+##'
 ##' # type 10 'point' ROIs are plotted using points()
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "multi_point.roi")
 ##' x <- read.ijroi(file)
 ##' plot(x, col = "red")
-##'  
-##' # If following is shown as a (round) circle, asp = 1 
+##'
+##' # If following is shown as a (round) circle, asp = 1
 ##' file <- file.path(system.file(package = "RImageJROI"), "extdata", "ijroi", "circle.roi")
 ##' x <- read.ijroi(file)
 ##' plot(x, border = "red")
