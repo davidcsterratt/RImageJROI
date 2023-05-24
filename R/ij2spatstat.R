@@ -96,6 +96,19 @@ conv.fun <- function(x, ...) {
     }}
   }
   
+  if(type == "traced") {
+    xx <- x$coords[,1]
+    yy <- x$coords[,2]
+    out <- psp(x0 = xx[1:(length(xx)-1)], x1 = xx[2:length(xx)], y0 = yy[1:(length(yy)-1)], y1 = yy[2:length(yy)],
+      marks = factor(rep(x$name, length(xx)-1)), 
+      window = if(is.null(window)) {owin(xrange = x$xrange, yrange = x$yrange)} else window)
+    if(!is.null(pattern.type)){
+    if(pattern.type == "owin") stop(paste0("ROI types ", "'", type, "'", " cannot be assigned as windows (see ?owin)"))
+    if(pattern.type == "ppp") {
+      out <- as.ppp(out)
+    }}
+  }
+  
   if(type == "noRoi") stop("Nothing to convert. Remove 'noRoi' objects.")
   
   if(type == "freehand") {
