@@ -19,7 +19,9 @@ write.ijzip <- function(file, roi, verbose = TRUE) {
                 roi = roi[[i]], verbose = verbose)
   }
   
-  zip(zipfile = file, files = dir(path = location, full.names = T, no.. = T, pattern = "*.roi"))
+  zip(zipfile = file, 
+      files = dir(path = location, full.names = T, no.. = T, pattern = "*.roi"),
+      flags = "-r9Xjq") # quiet mode
   
   unlink(location, recursive = T)
 }
