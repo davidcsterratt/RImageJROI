@@ -1,29 +1,35 @@
 
 #' @title Write ImageJ zip file containing several ROI files
 #'
-#' @description A wrapper function, which writes a zip file containing ImageJ ROI files using \code{\link{write.ijroi}} function.
-#' @param file zip file to write that will contain a collection of ImageJ ROI files
-#' @param roi a collection of roi list
+#' @description Write or add to a zip archive containing ImageJ ROI
+#'   files using the \code{\link{write.ijroi}} function.
+#' @param file zip archive to write that will contain a collection of
+#'   ImageJ ROI files
+#' @param roi A list of ROIs
 #' @param verbose Whether to report information
+#' @importFrom utils zip
 #' @seealso \code{\link{write.ijroi}}
-#' @return
 #' @export
-#'
-#' @examples
 write.ijzip <- function(file, roi, verbose = TRUE) {
-  location <- tempdir(check = T)
-  
-  num_roi <- length(roi)
-  for(i in 1:num_roi) {
-    write.ijroi(file = paste0(location, "/", roi[[i]]$name, ".roi"), 
+  # Delete any existing archive
+  unlink(file)
+
+  # Create temporary directory
+  location <- tempfile('roi')
+  dir.create(location)
+
+  # Add files to the archive one by one, to preserve the list order
+  for(i in 1:length(roi)) {
+    file_name <- file.path(location, paste0(roi[[i]]$name, ".roi"))
+    write.ijroi(file = file_name,
                 roi = roi[[i]], verbose = verbose)
+    zip(zipfile = file,
+      file_name,
+      flags = "-9Xjq") # quiet mode
   }
-  
-  zip(zipfile = file, 
-      files = dir(path = location, full.names = T, no.. = T, pattern = "*.roi"),
-      flags = "-r9Xjq") # quiet mode
-  
-  unlink(location, recursive = T)
+
+  # Remove temporary location
+  unlink(location, recursive = TRUE)
 }
 
 
