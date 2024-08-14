@@ -3,10 +3,24 @@
 \docType{package}
 \name{RImageJROI}
 \alias{RImageJROI}
-\title{Read ImageJ Region of Interest (ROI) files}
+\title{Read and write 'ImageJ' Region of Interest (ROI) files}
 \description{
-Provides functions to read ImageJ (http://imagej.nih.gov/ij/) Region of Interest (ROI) files, to plot the ROIs and to convert them as spatstat (http://spatstat.org/) spatial patterns.
+Provides functions to read and write 'ImageJ'
+(http://imagej.nih.gov/ij/) Region of Interest (ROI) files, to plot
+the ROIs and to convert them as spatstat (http://spatstat.org/)
+spatial patterns.
 }
 \details{
-ImageJ ROI objects can be read to R using \code{\link{read.ijroi}} and \code{\link{read.ijzip}} functions. The objects can be plotted using generic \code{\link[=plot.ijroi]{plot}} command and converted to \link{spatstat.geom} spatial patterns by using \code{\link{ij2spatstat}} function.
+ImageJ ROI files can be read into R using the
+\code{\link{read.ijroi}} and \code{\link{read.ijzip}} functions,
+resulting in \code{ijroi} and \code{ijzip} objects.
+
+The objects can be plotted using generic
+\code{\link[=plot.ijroi]{plot}} command and converted to
+\link{spatstat.geom} spatial patterns by using
+\code{\link{ij2spatstat}} function.
+
+The \code{ijroi} and \code{ijzip} objects can be written to file
+using the \code{\link{write.ijroi}} and \code{\link{write.ijzip}}
+functions.
 }
