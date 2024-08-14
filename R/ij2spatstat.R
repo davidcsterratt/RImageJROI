@@ -168,12 +168,12 @@ conv.fun <- function(x, ...) {
   return(out)}
 }
   
-if(class(X) == "ijroi"){
+if(inherits(X, "ijroi")){
   if(!is.null(window)) if(window == "range") window <- owin(xrange = X$xrange, yrange = X$yrange, unitname = unitname)
   tmp <- conv.fun(X, window = window, pattern.type = pattern.type, unitname = unitname, scale = scale, return.type = return.type)
   return(tmp)
 }
-if(class(X) == "ijzip"){
+if(inherits(X, "ijzip")){
   if(!is.null(convert.only)){
     X <- X[unlist(lapply(X, function(k) k$strType %in% convert.only))]
     }
