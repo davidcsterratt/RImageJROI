@@ -1,6 +1,6 @@
 Package: RImageJROI
-Title: Read 'ImageJ' Region of Interest (ROI) Files
-Description: Provides functions to read 'ImageJ' (<http://imagej.nih.gov/ij/>)
+Title: Read and write 'ImageJ' Region of Interest (ROI) files
+Description: Provides functions to read and write 'ImageJ' (<http://imagej.nih.gov/ij/>)
     Region of Interest (ROI) files, to plot the ROIs and to convert them to
     'spatstat' (<http://spatstat.org/>) spatial patterns.
 Version: 0.1.2

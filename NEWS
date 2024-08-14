@@ -2,7 +2,7 @@ CHANGES IN VERSION 0.1-3 - Released 2024/08/??
 
 NEW FEATURE
 
-* Issue #19: Writing ROI files
+* Issue #17: Writing ROI files
   https://github.com/davidcsterratt/RImageJROI/issues/17
   RImageJROI can now write ROI objects to ImageJROI files, and write
   lists of IJROI files to zip archives
