@@ -6,5 +6,4 @@
 #'
 #' @name RImageJROI
 #' @docType package
-#' @import spatstat
 NULL

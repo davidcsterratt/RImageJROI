@@ -8,11 +8,18 @@ NEW FEATURE
   lists of IJROI files to zip archives
   Thanks to Le Gao for providing code via a pull request
 
+CHANGES DUE TO SPATSTAT REPACKAGING
+
+* Issue #16: Update spatstat dependencies
+  https://github.com/davidcsterratt/RImageJROI/issues/16
+  The spatstat packages have been reorganised. RImageJROI now just
+  depends on spatstat.geom
+
 CHANGES IN VERSION 0.1-2 - Released 2021/03/20
 
 CHANGES DUE TO SPATSTAT REPACKAGING
 
-* Issue #16: Update spatstat dependencies, part 1
+* Issue #16: Update spatstat dependencies
   https://github.com/davidcsterratt/RImageJROI/issues/16
   The spatstat packages have been reorganised. RImageJROI now just
   depends on spatstat.geom and, for the moment, spatstat >= 2.0.0.
