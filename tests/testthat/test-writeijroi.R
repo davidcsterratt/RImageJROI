@@ -6,12 +6,13 @@ testthat::test_that("write.ijroi() produces files that are consistent with the s
 
   name_roi <- dir(path, pattern = "*.roi")
 
+  tmpDir <- tempdir()
   for (i in 1:length(name_roi)) {
 
     r <- RImageJROI::read.ijroi(file.path(path, name_roi[i]))
-    RImageJROI::write.ijroi(file = paste0("/tmp/", name_roi[i]), roi = r, verbose = FALSE)
+    RImageJROI::write.ijroi(file = file.path(tmpDir, name_roi[i]), roi = r, verbose = FALSE)
 
-    r_2 <- RImageJROI::read.ijroi(file = paste0("/tmp/", name_roi[i]), verbose = FALSE)
+    r_2 <- RImageJROI::read.ijroi(file = file.path(tmpDir, name_roi[i]), verbose = FALSE)
 
     tryCatch(
       expr = {
