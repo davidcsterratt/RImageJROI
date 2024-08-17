@@ -7,6 +7,7 @@
 #' @param roi A list of ROIs
 #' @param verbose Whether to report information
 #' @importFrom utils zip
+#' @author Le Gao, David Sterratt
 #' @seealso \code{\link{write.ijroi}}
 #' @export
 write.ijzip <- function(file, roi, verbose = TRUE) {

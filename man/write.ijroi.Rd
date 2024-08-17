@@ -19,3 +19,6 @@ Write an ImageJ ROI file.
 \seealso{
 \code{\link{read.ijroi}} for reading an ROI file
 }
+\author{
+Le Gao
+}

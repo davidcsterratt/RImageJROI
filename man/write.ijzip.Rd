@@ -21,3 +21,6 @@ Write or add to a zip archive containing ImageJ ROI
 \seealso{
 \code{\link{write.ijroi}}
 }
+\author{
+Le Gao, David Sterratt
+}

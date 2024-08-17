@@ -4,6 +4,7 @@
 #' @param roi  A structure of class \code{ijroi} containing the ROI information
 #' @param verbose Whether to report information
 #' @export
+#' @author Le Gao
 #' @seealso \code{\link{read.ijroi}} for reading an ROI file
 write.ijroi <- function(file, roi, verbose = TRUE) {
   # define internal helper functions
