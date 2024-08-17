@@ -1,8 +1,8 @@
 ## This file is based on the ImageJ RoiDecoder class at:
-## http://imagej.nih.gov/ij/developer/source/ij/io/RoiDecoder.java.html
+## https://github.com/imagej/ImageJ/blob/master/ij/io/RoiDecoder.java
 ## For information on how the ROIs are drawn, consult ROI methods in:
-## http://imagej.nih.gov/ij/developer/source/
-## 
+## https://github.com/imagej/ImageJ/blob/master/
+##
 ##  ImageJ/NIH Image 64 byte ROI outline header
 ##     2 byte numbers are big-endian signed shorts
 ##     0-3     "Iout"
@@ -27,8 +27,9 @@
 ##     60-63   reserved (zeros)
 ##     64-       x-coordinates (short), followed by y-coordinates
 ##
-##' Read an ImageJ ROI file. This returns a structure containing the
-##' ImageJ data. 
+
+##' Read an \href{https://imagej.net/}{ImageJ} ROI file. This returns
+##' a structure containing the ImageJ data.
 ##'
 ##' @title Read an ImageJ ROI file
 ##' @param file Name of ImageJ ROI file to read
@@ -264,14 +265,14 @@ read.ijroi <- function(file, verbose=FALSE) {
     r$yrange <- range(r$coords[,2])
   }
 
-  
+
   class(r) <- "ijroi"
   return(r)
 }
 
 ## Below is some unimplemented functionality from
-## http://imagej.nih.gov/ij/developer/source/ij/io/RoiDecoder.java.html
-## 
+## https://github.com/imagej/ImageJ/blob/master/ij/io/RoiDecoder.java
+##
 ## ##         // read stroke width, stroke color and fill color (1.43i or later)
 ## ##         if (version>=218) {
 ## ##             getStrokeWidthAndColor(roi);

@@ -1,8 +1,8 @@
-#' Read and write 'ImageJ' Region of Interest (ROI) files
+#' Read and write ImageJ Region of Interest (ROI) files
 #'
-#' Provides functions to read and write 'ImageJ'
-#' (http://imagej.nih.gov/ij/) Region of Interest (ROI) files, to plot
-#' the ROIs and to convert them as spatstat (http://spatstat.org/)
+#' Provides functions to read and write ImageJ
+#' (\url{https://imagej.net/}) Region of Interest (ROI) files, to plot
+#' the ROIs and to convert them as spatstat (\url{https://spatstat.org/})
 #' spatial patterns.
 #'
 #' ImageJ ROI files can be read into R using the

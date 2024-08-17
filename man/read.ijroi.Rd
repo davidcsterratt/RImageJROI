@@ -15,8 +15,8 @@ read.ijroi(file, verbose = FALSE)
 A structure of class \code{ijroi} containing the ROI information
 }
 \description{
-Read an ImageJ ROI file. This returns a structure containing the
-ImageJ data.
+Read an \href{https://imagej.net/}{ImageJ} ROI file. This returns
+a structure containing the ImageJ data.
 }
 \examples{
 library(png)
