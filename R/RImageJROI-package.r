@@ -11,7 +11,7 @@
 #'
 #' The objects can be plotted using generic
 #' \code{\link[=plot.ijroi]{plot}} command and converted to
-#' \link{spatstat.geom} spatial patterns by using
+#' \link[spatstat.geom]{spatstat.geom} spatial patterns by using
 #' \code{\link{ij2spatstat}} function.
 #'
 #' The \code{ijroi} and \code{ijzip} objects can be written to file
