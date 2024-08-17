@@ -1,6 +1,6 @@
 #' @title Read ImageJ zip file containing several ROI files
-#' 
-#' @description A wrapper function, which reads a zip file containing ImageJ ROI files using \code{\link{read.ijroi}} function. 
+#'
+#' @description A wrapper function, which reads a zip file containing ImageJ ROI files using \code{\link{read.ijroi}} function.
 #' @param file zip file containing a collection of ImageJ ROI files
 #' @param names Logical, indicating whether the ROI file names should be used as names for the elements in the list (see Return). If FALSE a sequence of names specifying the type of ROI is automatically generated.
 #' @param list.files logical, indicating whether a data.frame of ROI files in \code{file} should be returned instead of a list of results. Defaults to FALSE. If TRUE equals to \code{unzip(file, list = TRUE)}.
@@ -24,10 +24,10 @@ if(any(sapply(strsplit(files$Name, "\\."), '[', 2) == "roi") == FALSE) stop("The
 if(list.files == FALSE){
   ## Find a suitable location to unizip the zip file
   location <- tempfile()
-  
+
   ## Unzip the zip file to a temporary folder
   unzip(file, exdir = location)
-  
+
   # Read ROIs
   roi.dat <- sapply(seq_along(files$Name), function(i) {
     tmp <- read.ijroi(paste(location, files$Name, sep = "/")[i],
@@ -36,10 +36,10 @@ if(list.files == FALSE){
     names(tmp2) <- tmp[["name"]]
     return(tmp2)
   })
-  
+
   ## Remove the temporary folder
   unlink(location, recursive = TRUE)
-  
+
 ## Rename elements of the returned list
   if (names == FALSE){
     rep.names <- unlist(lapply(seq_along(roi.dat), function(i) roi.dat[[i]]$strType))

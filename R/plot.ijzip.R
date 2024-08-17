@@ -17,8 +17,8 @@
 ##' @importFrom graphics axis plot
 ##' @importFrom utils unzip
 ##' @method plot ijzip
-##' @export 
-##' 
+##' @export
+##'
 plot.ijzip <- function(x, add=FALSE, xlab = "", ylab = "", main = "", asp = 1, ...) {
 
 ## Base plot

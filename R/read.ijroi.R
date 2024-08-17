@@ -38,7 +38,7 @@
 ##' @author David Sterratt
 ##' @export
 ##' @seealso \code{\link{plot.ijroi}} for plotting single ROI objects.
-##' 
+##'
 ##' \code{\link{read.ijzip}} for reading several ROI objects from .zip files.
 ##' @examples
 ##' library(png)
@@ -52,11 +52,11 @@
 ##' plot(r, TRUE)
 ##' r <- read.ijroi(file.path(path, "oval.roi"))
 ##' plot(r, TRUE)
-##' 
+##'
 read.ijroi <- function(file, verbose=FALSE) {
   ## Define internal helper functions
   getByte <- function(con) {
-    pos <- seek(con) 
+    pos <- seek(con)
     n <- readBin(con, raw(0), 1, size=1)
     if (verbose)
       message(paste("Pos ", pos , ": Byte ", n, sep=""))
@@ -64,7 +64,7 @@ read.ijroi <- function(file, verbose=FALSE) {
   }
 
   getShort <- function(con) {
-    pos <- seek(con) 
+    pos <- seek(con)
     n <- readBin(con, integer(0), 1, size=2, signed=TRUE, endian="big")
     if (n < -5000) {
       seek(con, -2, origin="current")
@@ -74,9 +74,9 @@ read.ijroi <- function(file, verbose=FALSE) {
       message(paste("Pos ", pos , ": Short ", n, sep=""))
     return(n)
   }
-  
+
   getInt <- function(con)  {
-    pos <- seek(con) 
+    pos <- seek(con)
     n <- readBin(con, integer(0), 1, size=4, signed=TRUE, endian="little")
     if (verbose)
       message(paste("Pos ", pos , ": Integer ", n, sep=""))
@@ -84,13 +84,13 @@ read.ijroi <- function(file, verbose=FALSE) {
   }
 
   getFloat <- function(con)  {
-    pos <- seek(con) 
+    pos <- seek(con)
     n <- readBin(con, double(0), 1, size=4, signed=TRUE, endian="big")
     if (verbose)
       message(paste("Pos ", pos , ": Float ", n, sep=""))
     return (n);
   }
-  
+
   ## subtypes
   subtypes <- list(TEXT    = 1,
                    ARROW   = 2,
@@ -101,7 +101,7 @@ read.ijroi <- function(file, verbose=FALSE) {
   opts <- list(SPLINE_FIT    = 1,
                DOUBLE_HEADED = 2,
                OUTLINE       = 4)
-  
+
   ## types
   types <- list(polygon  = 0,
                 rect     = 1,
@@ -123,7 +123,7 @@ read.ijroi <- function(file, verbose=FALSE) {
       stop("This is not an ROI or file size>5MB)")
     name <- basename(file)
   }
-  
+
   ## Open the connection
   con <- file(file, "rb")
 
@@ -134,7 +134,7 @@ read.ijroi <- function(file, verbose=FALSE) {
 
   if (verbose)
     message("Reading format data")
-  
+
   ## Create place to store data
   r <- list()
 
@@ -153,13 +153,13 @@ read.ijroi <- function(file, verbose=FALSE) {
   r$height <-   with(r, bottom-top)
   r$n <-            getShort(con)  # 16-17 NCoordinates N_COORDINATES
   r$x1 <-           getFloat(con)  # 18-33 x1,y1,x2,y2 (straight line)
-  r$y1 <-           getFloat(con) 
-  r$x2 <-           getFloat(con) 
+  r$y1 <-           getFloat(con)
+  r$x2 <-           getFloat(con)
   r$y2 <-           getFloat(con)
   r$strokeWidth <-  getShort(con)  # 34-35 stroke width (v1.43i or later) STROKE_WIDTH
   r$shapeRoiSize <- getInt(con)    # 36-39 ShapeRoi size (type must be 1 if this value>0) SHAPE_ROI_SIZE
   r$strokeColor <-  getInt(con)    # 40-43 stroke color (v1.43i or later)
-  r$fillColor <-    getInt(con)    # 44-47 fill color (v1.43i or later) FILL_COLOR 
+  r$fillColor <-    getInt(con)    # 44-47 fill color (v1.43i or later) FILL_COLOR
   r$subtype <-      getShort(con)  # 48-49 subtype (v1.43k or later)    SUBTYPE
   r$options <-      getShort(con)  # 50-51 options (v1.43k or later)    OPTIONS
   ## 52-55   style information or aspect ratio (v1.43p or later)
@@ -167,7 +167,7 @@ read.ijroi <- function(file, verbose=FALSE) {
     r$aspectRatio <- getFloat(con) # ELLIPSE_ASPECT_RATIO
   } else {
     r$style <-      getByte(con)   # 52-52 arrow style  (v1.43p or later)
-    r$headSize <-   getByte(con)   # 53-53 arrow head size (v1.43p or later) ARROW_HEAD_SIZE    
+    r$headSize <-   getByte(con)   # 53-53 arrow head size (v1.43p or later) ARROW_HEAD_SIZE
     r$arcSize <-    getShort(con)  # 54-55 rounded rect arc size (v1.43p or later) ROUNDED_RECT_ARC_SIZE
   }
   r$position <-     getInt(con)    # 56-59 position POSITION
@@ -177,10 +177,10 @@ read.ijroi <- function(file, verbose=FALSE) {
   ## 64-       x-coordinates (short), followed by y-coordinates
   if (verbose)
     message("Reading coordinate data")
-  
+
   if (!is.null(name) && (grepl(".roi$", name)))
     r$name <- substring(name, 1, nchar(name) - 4)
-    
+
   isComposite <- (r$shapeRoiSize >0);
   if (isComposite) {
     stop("Composite ROIs not supported")
@@ -189,7 +189,7 @@ read.ijroi <- function(file, verbose=FALSE) {
     ##          roi.setPosition(position);
     ## return roi;
   }
-  
+
   if (r$type %in% types["line"]) {
     if (r$subtype %in% subtypes["ARROW"]) {
       r$doubleHeaded <- (r$options & opts$DOUBLE_HEADED)
@@ -220,7 +220,7 @@ read.ijroi <- function(file, verbose=FALSE) {
     }
   }
   close(con)
-  
+
   ## Generate coordinates for r$type == line
   if (r$type %in% types["line"]){
     r$coords <- matrix(NA, 2, 2)
@@ -242,9 +242,9 @@ read.ijroi <- function(file, verbose=FALSE) {
   ## Name columns of coordinates
   colnames(r$coords) <- c("x", "y")
 
-  
+
   ## Add type information
-  r$types <- types  
+  r$types <- types
   r$strType <- names(types)[which(types == r$type)]
 
   ## Add subtype information
@@ -252,7 +252,7 @@ read.ijroi <- function(file, verbose=FALSE) {
     r$subtypes <- subtypes
     r$strSubtype <- names(subtypes)[which(subtypes == r$subtype)]
   }
-  
+
   ## Add range to ease plotting
   if(r$type == r$types[["oval"]] | r$type == r$types[["rect"]]) {
     r$xrange <- range(c(r$left, r$right))
@@ -280,7 +280,7 @@ read.ijroi <- function(file, verbose=FALSE) {
 ## ##             if (splineFit && roi instanceof PolygonRoi)
 ## ##                 ((PolygonRoi)roi).fitSpline();
 ## ##         }
-        
+
 ## ##         if (version>=218 && subtype==TEXT)
 ## ##             roi = getTextRoi(roi);
 
@@ -303,7 +303,7 @@ read.ijroi <- function(file, verbose=FALSE) {
 ## ##             roi.setFillColor(new Color(fillColor, alpha!=255));
 ## ##         }
 ## ##     }
-    
+
 ## ##     Roi getTextRoi(Roi roi) {
 ## ##         Rectangle r = roi.getBounds();
 ## ##         int hdrSize = RoiEncoder.HEADER_SIZE;

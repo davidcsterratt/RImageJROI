@@ -15,7 +15,7 @@ test_that("dimensions are correct", {
 context("Reading a polygon")
 
 test_that("dimensions are correct", {
-  coords <- structure(c(1, 31, 31, 23, 23, 31, 31, 1, 1, 9, 9, 1, 0, 0, 2, 
+  coords <- structure(c(1, 31, 31, 23, 23, 31, 31, 1, 1, 9, 9, 1, 0, 0, 2,
 7, 18, 23, 25, 25, 23, 18, 7, 2), .Dim = c(12L, 2L))
   colnames(coords) <- c("x", "y")
   r <- read.ijroi(file.path(path, "polygon.roi"))

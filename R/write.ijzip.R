@@ -1,4 +1,3 @@
-
 #' @title Write ImageJ zip file containing several ROI files
 #'
 #' @description Write or add to a zip archive containing ImageJ ROI
