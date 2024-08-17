@@ -18,6 +18,5 @@ Suggests:
     png,
     testthat
 License: GPL-3
-LazyData: true
 RoxygenNote: 7.2.3
 Encoding: UTF-8
