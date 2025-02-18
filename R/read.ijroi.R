@@ -77,7 +77,7 @@ read.ijroi <- function(file, verbose=FALSE) {
 
   getInt <- function(con)  {
     pos <- seek(con)
-    n <- readBin(con, integer(0), 1, size=4, signed=TRUE, endian="little")
+    n <- readBin(con, integer(0), 1, size=4, signed=TRUE, endian="big")
     if (verbose)
       message(paste("Pos ", pos , ": Integer ", n, sep=""))
     return (n);
@@ -158,8 +158,19 @@ read.ijroi <- function(file, verbose=FALSE) {
   r$y2 <-           getFloat(con)
   r$strokeWidth <-  getShort(con)  # 34-35 stroke width (v1.43i or later) STROKE_WIDTH
   r$shapeRoiSize <- getInt(con)    # 36-39 ShapeRoi size (type must be 1 if this value>0) SHAPE_ROI_SIZE
-  r$strokeColor <-  getInt(con)    # 40-43 stroke color (v1.43i or later)
-  r$fillColor <-    getInt(con)    # 44-47 fill color (v1.43i or later) FILL_COLOR
+  
+  #r$strokeColor <-  getInt(con)    # 40-43 stroke color (v1.43i or later)
+  r$strokeColor_a <-  getByte(con)    # 40
+  r$strokeColor_r <-  getByte(con)    # 41
+  r$strokeColor_g <-  getByte(con)    # 42
+  r$strokeColor_b <-  getByte(con)    # 43
+  
+  #r$fillColor <-    getInt(con)    # 44-47 fill color (v1.43i or later) FILL_COLOR
+  r$fillColor_a <-    getByte(con)    # 44
+  r$fillColor_r <-    getByte(con)    # 45
+  r$fillColor_g <-    getByte(con)    # 46
+  r$fillColor_b <-    getByte(con)    # 47
+  
   r$subtype <-      getShort(con)  # 48-49 subtype (v1.43k or later)    SUBTYPE
   r$options <-      getShort(con)  # 50-51 options (v1.43k or later)    OPTIONS
   ## 52-55   style information or aspect ratio (v1.43p or later)

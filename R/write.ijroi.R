@@ -26,7 +26,7 @@ write.ijroi <- function(file, roi, verbose = TRUE) {
 
   putInt <- function(con, input) {
     pos <- seek(con)
-    writeBin(object = as.integer(input), con = con, size = 4, endian = "little")
+    writeBin(object = as.integer(input), con = con, size = 4, endian = "big")
     if(verbose) {
       message(paste0("Pos ", pos, "-", pos+3, ": Integer ", input))
     }
@@ -80,8 +80,19 @@ write.ijroi <- function(file, roi, verbose = TRUE) {
 
   putShort(con, roi$strokeWidth) # 34-35 stroke width
   putInt(con, roi$shapeRoiSize) # 36-39 ShapeRoi size
-  putInt(con, roi$strokeColor) # 40-43 stroke color
-  putInt(con, roi$fillColor) # 44-47 fill color
+  
+  #putInt(con, roi$strokeColor) # 40-43 stroke color
+  putByte(con, roi$strokeColor_a) # 40 alpha channel
+  putByte(con, roi$strokeColor_r) # 41 red channel
+  putByte(con, roi$strokeColor_g) # 42 green channel
+  putByte(con, roi$strokeColor_b) # 43 blue channel
+  
+  #putInt(con, roi$fillColor) # 44-47 fill color
+  putByte(con, roi$fillColor_a) # 44 alpha channel
+  putByte(con, roi$fillColor_r) # 45 red channel
+  putByte(con, roi$fillColor_g) # 46 green channel
+  putByte(con, roi$fillColor_b) # 47 blue channel
+  
   putShort(con, roi$subtype) # 48-49 subtype
   putShort(con, roi$options) # 50-51 options
 
